@@ -1,20 +1,40 @@
-var buttonE1 = document.querySelector("#save-task");
+var formEl = document.querySelector("#task-form");
 var taskstoDoEl = document.querySelector("#tasks-to-do");
-var taskIdCounter = 0;
 
-var createTaskHandler = function(){
-    var listItemEl = document.createElement("li");
-    listItemEl.textContent = ("this is a new task")
-    listItemEl.className = ("task-item");
-    listItemEl.setAttribute("data-task-id", taskIdCounter);
-  taskstoDoEl.appendChild(listItemEl);
+
+
+var taskFormHandler = function(event){
+  event.preventDefault();
+
+  var taskNameInput = document.querySelector("input[name='task-name']").value;
+  var taskTypeInput = document.querySelector("select[name='task-type']").value
+  console.log(taskTypeInput);
+  
+  var taskDataObj = {
+    name: taskNameInput,
+    type: taskTypeInput
+  };
+    
+    createTaskEl(taskDataObj);
+ 
+
 
 }
 
-buttonE1.addEventListener("click", createTaskHandler); {
-    var listItemEl = document.createElement("li");
-    listItemEl.textContent = ("this is a new task")
-    listItemEl.className = ("task-item");
+var createTaskEl = function(taskDataObj){
+  var listItemEl = document.createElement("li");
+  listItemEl.className = ("task-item");
+
+var taskInfoEl = document.createElement("div");
+    taskInfoEl.className = "task-info";
+
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+    listItemEl.appendChild(taskInfoEl);
     taskstoDoEl.appendChild(listItemEl);
-};
+
+    taskstoDoEl.appendChild(listItemEl);
+
+}
+
+formEl.addEventListener("submit", taskFormHandler);
 
