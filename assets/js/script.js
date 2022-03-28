@@ -43,6 +43,9 @@ var taskInfoEl = document.createElement("div");
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
     //appends the div to the li
     listItemEl.appendChild(taskInfoEl);
+
+    var taskActionsEl =createTaskActions(taskIdCounter);
+    console.log(taskActionsEl);
     //appends li to the ul element
     taskstoDoEl.appendChild(listItemEl);
 
@@ -90,7 +93,7 @@ for( var i =0;i < statusChoices.length; i++){
   statusSelectEl.appendChild(statusOptionEl);
 }
 
-return createTaskActions();
+return actionContainerEl();
 
 
 }
